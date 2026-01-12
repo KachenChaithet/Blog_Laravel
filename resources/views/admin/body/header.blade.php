@@ -117,7 +117,7 @@
                          </div>
 
                          <!-- item-->
-                         <a href="{{ route('profile.edit') }}" class="dropdown-item notify-item">
+                         <a href="{{ route('admin.profile') }}" class="dropdown-item notify-item">
                              <i class="mdi mdi-account-circle-outline fs-16 align-middle"></i>
                              <span>My Account</span>
                          </a>

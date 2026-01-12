@@ -2,125 +2,87 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8" />
-    <title>Verification Page</title>
+    <title>Verification</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc." />
-    <meta name="author" content="Zoyothemes" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('backend/assets/images/favicon.ico') }}">
-
-    <!-- App css -->
-    <link href="{{ asset('backend/assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style" />
-
-    <!-- Icons -->
-    <link href="{{ asset('backend/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
-
+    <link href="{{ asset('backend/assets/css/app.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('backend/assets/css/icons.min.css') }}" rel="stylesheet" />
 </head>
 
-<body class="bg-white">
-    <!-- Begin page -->
-    <div class="account-page">
-        <div class="container-fluid p-0">
-            <div class="row align-items-center g-0">
-                <div class="col-xl-5">
-                    <div class="row">
-                        <div class="col-md-7 mx-auto">
-                            <div class="mb-0 border-0 p-md-5 p-lg-0 p-4">
-                                <div class="mb-4 p-0">
-                                    <a href="index.html" class="auth-logo">
-                                        <img src="{{ asset('backend/assets/images/logo-dark.png') }}" alt="logo-dark"
-                                            class="mx-auto" height="28" />
-                                    </a>
-                                </div>
+<body class="bg-light">
 
-                                @if (session('status'))
-                                    <div class="alert alert-success">
-                                        {{ session('status') }}
-                                    </div>
-                                @endif
+<div class="container min-vh-100 d-flex align-items-center justify-content-center">
+    <div class="row w-100">
+        <div class="col-lg-5 col-md-7 mx-auto">
 
-                                @if ($errors->any())
-                                    <div class="alert alert-danger mt-3">
-                                        <ul>
-                                            @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                @endif
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-4 p-md-5">
 
-                                <div class="pt-0">
-                                    <form method="POST" action="{{ route('custom.verification.verify') }}"
-                                        class="my-4">
-                                        @csrf
-                                        @if (session('error'))
-                                            <div class="alert alert-danger">
-                                                {{ session('error') }}
-                                            </div>
-                                        @endif
-                                        <div class="form-group mb-3">
-                                            <label for="emailaddress" class="form-label">Email address</label>
-                                            <input class="form-control" type="text" id="code" name="code"
-                                                required="" placeholder="Enter your code">
-                                            @error('code')
-                                                <small class="text-danger">{{ $message }}</small>
-                                            @enderror
-
-
-
-                                            <div class="form-group mb-0 row">
-                                                <div class="col-12">
-                                                    <div class="d-grid">
-                                                        <button class="btn btn-primary" type="submit">Verify</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                    </form>
-
-
-
-
-
-                                </div>
-                            </div>
-                        </div>
+                    <div class="text-center mb-4">
+                        <img src="{{ asset('backend/assets/images/logo-dark.png') }}" height="32" class="mb-3">
+                        <h4 class="fw-bold">Verify Your Login</h4>
+                        <p class="text-muted mb-0">
+                            Enter the 6-digit verification code sent to your email
+                        </p>
                     </div>
-                </div>
 
-                <div class="col-xl-7">
-                    <div class="account-page-bg p-md-5 p-4">
-                        <div class="text-center">
-                            <h3 class="text-dark mb-3 pera-title">Quick, Effective, and Productive With Tapeli Admin
-                                Dashboard</h3>
-                            <div class="auth-image">
-                                <img src="{{ asset('backend/assets/images/authentication.svg') }}"
-                                    class="mx-auto img-fluid" alt="images">
-                            </div>
+                    @if (session('status'))
+                        <div class="alert alert-success text-center">
+                            {{ session('status') }}
                         </div>
-                    </div>
+                    @endif
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul class="mb-0 ps-3">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    <form method="POST" action="{{ route('custom.verification.verify') }}">
+                        @csrf
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Verification Code</label>
+                            <input
+                                type="text"
+                                name="code"
+                                class="form-control form-control-lg text-center @error('code') is-invalid @enderror"
+                                placeholder="••••••"
+                                maxlength="6"
+                                required
+                            >
+                            @error('code')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                Verify & Continue
+                            </button>
+                        </div>
+                    </form>
+
                 </div>
             </div>
+
+            <p class="text-center text-muted mt-3 mb-0">
+                Didn’t receive the code? Please check your spam folder.
+            </p>
+
         </div>
     </div>
+</div>
 
-    <!-- END wrapper -->
-
-    <!-- Vendor -->
-    <script src="{{ asset('backend/assets/libs/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('backend/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('backend/assets/libs/simplebar/simplebar.min.js') }}"></script>
-    <script src="{{ asset('backend/assets/libs/node-waves/waves.min.js') }}"></script>
-    <script src="{{ asset('backend/assets/libs/waypoints/lib/jquery.waypoints.min.js') }}"></script>
-    <script src="{{ asset('backend/assets/libs/jquery.counterup/jquery.counterup.min.js') }}"></script>
-    <script src="{{ asset('backend/assets/libs/feather-icons/feather.min.js') }}"></script>
-
-    <!-- App js-->
-    <script src="{{ asset('backend/assets/js/app.js') }}"></script>
+<script src="{{ asset('backend/assets/libs/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('backend/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('backend/assets/js/app.js') }}"></script>
 
 </body>
-
 </html>

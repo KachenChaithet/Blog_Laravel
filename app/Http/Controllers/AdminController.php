@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\VerificationCodeMail;
+use View;
 class AdminController extends Controller
 {
     //
@@ -45,6 +46,9 @@ class AdminController extends Controller
 
     public function ShowVerification()
     {
+        if (Auth::check()) {
+            return redirect()->intended('/dashboard');
+        }
         return view('auth.verify');
     }
 
@@ -60,5 +64,10 @@ class AdminController extends Controller
         }
         return back()->withErrors(['code' => 'Invalid Verification Code']);
 
+    }
+
+    public function AdminProfile()
+    {
+        return view('admin.admin_profile');
     }
 }
