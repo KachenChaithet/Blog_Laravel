@@ -9,7 +9,7 @@
 </head>
 <p>Hello,</p>
 <p>Your Login Verification code is : <strong>{{ $code }}</strong></p>
-<p>)Place enter this code to complete your login </p>
+<p>Place enter this code to complete your login </p>
 
 <body>
 
