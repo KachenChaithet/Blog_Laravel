@@ -25,6 +25,7 @@
                      </button>
                  </li>
 
+
                  <li class="dropdown notification-list topbar-dropdown">
                      <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
                          aria-haspopup="false" aria-expanded="false">
@@ -104,10 +105,10 @@
                  <li class="dropdown notification-list topbar-dropdown">
                      <a class="nav-link dropdown-toggle nav-user me-0" data-bs-toggle="dropdown" href="#"
                          role="button" aria-haspopup="false" aria-expanded="false">
-                         <img src="{{ asset('backend/assets/images/users/user-11.jpg') }}" alt="user-image"
-                             class="rounded-circle">
+                         <img src="{{ !empty(Auth::user()->photo) ? asset('uploads/' . Auth::user()->photo) : asset('uploads/no_image.jpg') }}"
+                             alt="user-image" class="rounded-circle">
                          <span class="pro-user-name ms-1">
-                             Christian <i class="mdi mdi-chevron-down"></i>
+                             {{ Auth::user()->name }} <i class="mdi mdi-chevron-down"></i>
                          </span>
                      </a>
                      <div class="dropdown-menu dropdown-menu-end profile-dropdown ">

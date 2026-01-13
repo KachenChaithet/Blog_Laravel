@@ -6,6 +6,7 @@ use App\Models\User;
 use File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\VerificationCodeMail;
 use View;
@@ -100,6 +101,42 @@ class AdminController extends Controller
 
         $profileData->save();
 
-        return redirect()->back();
+        $notification = array(
+            'message' => 'Profile Updated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
+
+    public function PasswordUpdate(Request $request)
+    {
+        $user = Auth::user();
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required|confirmed'
+        ]);
+
+        if (!Hash::check($request->old_password, $user->password)) {
+            $notification = array(
+                'message' => 'Old Password does not Match!',
+                'alert-type' => 'error'
+            );
+
+            return back()->with($notification);
+        }
+
+        $user->update([
+            'password' => Hash::make($request->new_password)
+        ]);
+
+        Auth::logout();
+
+        $notification = array(
+            'message' => 'Password Updated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('login')->with($notification);
     }
 }
