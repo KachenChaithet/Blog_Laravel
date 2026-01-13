@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -68,6 +70,36 @@ class AdminController extends Controller
 
     public function AdminProfile()
     {
-        return view('admin.admin_profile');
+        $id = Auth::user()->id;
+        $profileData = User::findOrFail($id);
+        return view('admin.admin_profile', compact('profileData'));
+    }
+
+    public function ProfileStore(Request $request)
+    {
+        $id = Auth::user()->id;
+        $profileData = User::findOrFail($id);
+
+        $profileData->name = $request->name;
+        $profileData->email = $request->email;
+        $profileData->phone = $request->phone;
+        $profileData->address = $request->address;
+
+        $oldPath = public_path('uploads/' . $profileData->photo);
+
+
+        if ($request->hasFile('photo')) {
+            if (File::exists($oldPath)) {
+                File::delete($oldPath);
+            }
+            $image = $request->file('photo');
+            $imageName = time() . '.' . $image->extension();
+            $image->move(public_path('uploads'), $imageName);
+            $profileData->photo = $imageName;
+        }
+
+        $profileData->save();
+
+        return redirect()->back();
     }
 }
