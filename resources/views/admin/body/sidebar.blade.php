@@ -27,15 +27,15 @@
 
                  <li class="menu-title">Menu</li>
 
-                    <li>
+                 <li>
                      <a href="{{ route('dashboard') }}" class="tp-link">
                          <i data-feather="home"></i>
                          <span> Dashboard </span>
                      </a>
                  </li>
-                 
 
-       
+
+
 
                  <li class="menu-title">Pages</li>
 
@@ -51,9 +51,9 @@
                                  <a href="{{ route('all.review') }}" class="tp-link">All Review</a>
                              </li>
                              <li>
-                                 <a href="auth-register.html" class="tp-link">Add Review</a>
+                                 <a href="{{ route('add.review') }}" class="tp-link">Add Review</a>
                              </li>
-                             
+
                          </ul>
                      </div>
                  </li>
@@ -72,12 +72,12 @@
                              <li>
                                  <a href="error-500.html" class="tp-link">Error 500</a>
                              </li>
-                           
+
                          </ul>
                      </div>
                  </li>
 
-                
+
 
 
                  <li class="menu-title mt-2">General</li>
@@ -96,7 +96,7 @@
                              <li>
                                  <a href="ui-alerts.html" class="tp-link">Alerts</a>
                              </li>
-                          
+
                          </ul>
                      </div>
                  </li>
@@ -150,13 +150,13 @@
                      </div>
                  </li>
 
-                 
 
-                 
 
-                 
 
-                 
+
+
+
+
 
              </ul>
 

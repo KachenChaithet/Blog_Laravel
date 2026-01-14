@@ -60,6 +60,7 @@
 
             @yield('admin')<!-- content -->
             @yield('allreview')<!-- content -->
+            @yield('addreview')<!-- content -->
 
             <!-- Footer Start -->
             @include('admin.body.footer')

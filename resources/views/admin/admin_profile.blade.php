@@ -123,7 +123,8 @@
                                         </div>
 
                                         {{-- form change password --}}
-                                        <form action="{{ route('admin.password.update') }}" method="POST" class="col-lg-6 col-xl-6 w-full">
+                                        <form action="{{ route('admin.password.update') }}" method="POST"
+                                            class="col-lg-6 col-xl-6 w-full">
                                             @csrf
                                             <div class="">
                                                 <div class="card border mb-0">
@@ -201,6 +202,7 @@
 
 
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {

@@ -24,6 +24,7 @@ Route::middleware('auth')->group(function () {
 
 Route::controller(ReviewController::class)->middleware('auth')->group(function () {
     Route::get('/all/review', 'AllReview')->name('all.review');
+    Route::get('/add/review', 'AddReview')->name('add.review');
 });
 
 Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
