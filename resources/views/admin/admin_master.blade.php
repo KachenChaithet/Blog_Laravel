@@ -81,9 +81,9 @@
     <script src="{{ asset('backend/assets/js/app.js') }}"></script>
 
 
+    {{-- alert --}}
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-    {{-- alert --}}
     <script>
         @if (Session::has('message'))
             var type = "{{ Session::get('alert-type', 'info') }}"
