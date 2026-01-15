@@ -1,5 +1,5 @@
 @extends('admin.admin_master')
-@section('addreview')
+@section('editreview')
     <div class="content">
 
         <!-- Start Content-->
@@ -7,7 +7,7 @@
 
             <div class="py-3 d-flex align-items-sm-center flex-sm-row flex-column">
                 <div class="flex-grow-1">
-                    <h4 class="fs-18 fw-semibold m-0">Add Review</h4>
+                    <h4 class="fs-18 fw-semibold m-0">Edit Review</h4>
                 </div>
             </div>
 
@@ -31,14 +31,15 @@
                                                     <div class="card-header">
                                                         <div class="row align-items-center">
                                                             <div class="col">
-                                                                <h4 class="card-title mb-0">Add Review</h4>
+                                                                <h4 class="card-title mb-0">Edit Review</h4>
                                                             </div><!--end col-->
                                                         </div>
                                                     </div>
 
 
-                                                    <form action="{{ route('store.review') }}" method="POST"
+                                                    <form action="{{ route('update.review', $review->id) }}" method="POST"
                                                         enctype="multipart/form-data">
+                                                        @method('PUT')
                                                         @csrf
                                                         <div class="card-body">
 
@@ -46,7 +47,8 @@
                                                                 <label class="form-label"> Name</label>
                                                                 <div class="col-lg-12 col-xl-12">
                                                                     <input class="form-control" type="text"
-                                                                        name="name" id="name" value="">
+                                                                        name="name" id="name"
+                                                                        value="{{ $review->name }}">
                                                                 </div>
                                                             </div>
 
@@ -54,14 +56,15 @@
                                                                 <label class="form-label"> Position</label>
                                                                 <div class="col-lg-12 col-xl-12">
                                                                     <input class="form-control" type="text"
-                                                                        name="position" id="position" value="">
+                                                                        name="position" id="position"
+                                                                        value="{{ $review->position }}">
                                                                 </div>
                                                             </div>
 
                                                             <div class="form-group mb-3 row">
                                                                 <label class="form-label"> Message</label>
                                                                 <div class="col-lg-12 col-xl-12">
-                                                                    <textarea class="form-control" name="message" id="message"></textarea>
+                                                                    <textarea class="form-control" name="message" id="message">{{ $review->message }}</textarea>
 
                                                                 </div>
                                                             </div>
@@ -77,7 +80,7 @@
                                                             <div class="form-group mb-3 row">
                                                                 <div class="col-lg-12 col-xl-12">
                                                                     <img id="showImage"
-                                                                        src="{{ asset('uploads/no_image.jpg') }}"
+                                                                        src="{{ !empty($review->image) ? asset('uploads/reviews/' . $review->image) : asset('uploads/no_image.jpg') }}"
                                                                         class="rounded-circle avatar-xxl img-thumbnail float-start"
                                                                         alt=" image " />
                                                                 </div>

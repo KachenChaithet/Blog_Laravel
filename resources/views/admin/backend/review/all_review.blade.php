@@ -37,12 +37,21 @@
                                             <td>{{ $key + 1 }}</td>
                                             <td>{{ $review->name }}</td>
                                             <td>{{ $review->position }}</td>
-                                            <td><img src="{{ asset('uploads/' . $review->image) }}" alt=""
-                                                    style="width: 70px; height: 40px;"></td>
-                                            <td>{{ $review->message }}</td>
+                                            <td><img src="{{ !empty($review->image) ? asset('uploads/reviews/' . $review->image) : asset('uploads/no_image.jpg') }}  "
+                                                    alt="" style="width: 70px; height: 40px;"></td>
+                                            <td>{{ Str::limit($review->message, 50, '...') }}</td>
                                             <td>
-                                                <button class="btn btn-success btn-sm">Edit</button>
-                                                <button class="btn btn-danger btn-sm">Delete</button>
+                                                <a href="{{ route('edit.review', $review->id) }}"
+                                                    class="btn btn-success btn-sm">Edit</a>
+
+                                                <form action="{{ route('delete.review', $review->id) }}" method="POST"
+                                                    class="delete-form" style="display:inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm show-confirm">
+                                                        Delete
+                                                    </button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach

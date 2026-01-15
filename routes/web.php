@@ -25,6 +25,10 @@ Route::middleware('auth')->group(function () {
 Route::controller(ReviewController::class)->middleware('auth')->group(function () {
     Route::get('/all/review', 'AllReview')->name('all.review');
     Route::get('/add/review', 'AddReview')->name('add.review');
+    Route::post('/store/review', 'StoreReview')->name('store.review');
+    Route::get('/edit/review/{id}', 'EditReview')->name('edit.review');
+    Route::put('/update/review/{id}', 'UpdateReview')->name('update.review');
+    Route::delete('/delete/review/{id}', 'DeleteReview')->name('delete.review');
 });
 
 Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
