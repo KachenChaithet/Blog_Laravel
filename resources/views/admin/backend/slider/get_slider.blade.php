@@ -37,7 +37,7 @@
                                                     </div>
 
 
-                                                    <form action="" method="POST" enctype="multipart/form-data">
+                                                    <form action="{{ route('update.slider') }}" method="POST" enctype="multipart/form-data">
                                                         @method('PUT')
                                                         @csrf
                                                         <div class="card-body">
@@ -46,7 +46,7 @@
                                                                 <label class="form-label"> Title</label>
                                                                 <div class="col-lg-12 col-xl-12">
                                                                     <input class="form-control" type="text"
-                                                                        name="name" id="name"
+                                                                        name="title" id="title"
                                                                         value="{{ $slider->title }}">
                                                                 </div>
                                                             </div>
@@ -55,7 +55,7 @@
                                                                 <label class="form-label"> Description</label>
                                                                 <div class="col-lg-12 col-xl-12">
                                                                     <input class="form-control" type="text"
-                                                                        name="position" id="position"
+                                                                        name="description" id="description"
                                                                         value="{{ $slider->description }}">
                                                                 </div>
                                                             </div>
@@ -64,7 +64,7 @@
                                                                 <label class="form-label"> Link</label>
                                                                 <div class="col-lg-12 col-xl-12">
                                                                     <input class="form-control" type="text"
-                                                                        name="position" id="position"
+                                                                        name="link" id="link"
                                                                         value="{{ $slider->link }}">
                                                                 </div>
                                                             </div>
@@ -82,7 +82,7 @@
                                                             <div class="form-group mb-3 row">
                                                                 <div class="col-lg-12 col-xl-12">
                                                                     <img id="showImage"
-                                                                        src="{{ !empty($slider->image) ? asset('uploads/reviews/' . $slider->image) : asset('uploads/no_image.jpg') }}"
+                                                                        src="{{ !empty($slider->image) ? asset('uploads/sliders/' . $slider->image) : asset('uploads/no_image.jpg') }}"
                                                                         class="rounded-circle avatar-xxl img-thumbnail float-start"
                                                                         alt=" image " />
                                                                 </div>

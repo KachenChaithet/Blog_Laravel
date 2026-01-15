@@ -33,6 +33,7 @@ Route::controller(ReviewController::class)->middleware('auth')->group(function (
 });
 Route::controller(SliderController::class)->middleware('auth')->group(function () {
     Route::get('/get/slider', 'GetSlider')->name('get.slider');
+    Route::put('/update/slider', 'UpdateSlider')->name('update.slider');
 
 });
 
