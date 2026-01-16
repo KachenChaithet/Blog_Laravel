@@ -7,10 +7,11 @@
             <div class="col-lg-7 d-flex align-items-center">
                 <div class="lonyo-hero-content" data-aos="fade-up" data-aos-duration="700">
 
-                    <h1 id="slider-title" contenteditable="{{ auth()->user()->role === 'admin' ? 'true' : 'false' }}"
+                    <h1 id="slider-title"
+                        contenteditable="{{ auth()->check() && auth()->user()->role === 'admin' ? 'true' : 'false' }}"
                         data-id="{{ $slider->id }}" class="hero-title">{{ $slider->title }}</h1>
                     <p id="slider-description"
-                        contenteditable="{{ auth()->user()->role === 'admin' ? 'true' : 'false' }}"
+                        contenteditable="{{ auth()->check() && auth()->user()->role === 'admin' ? 'true' : 'false' }}"
                         data-id="{{ $slider->id }}" class="text">{{ $slider->description }}.</p>
 
                     <div class="mt-50" " data-aos="fade-up" data-aos-duration="900">
@@ -38,7 +39,7 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const titleElement = document.getElementById("slider-title");
-        
+
         const descriptionElement = document.getElementById("slider-description");
 
         function saveChange(element) {
