@@ -2,9 +2,15 @@
      <div class="container">
          <div class="lonyo-section-title">
              <div class="row">
+                 @php
+                     $title = App\Models\Title::find(1);
+                 @endphp
                  <div class="col-xl-8 col-lg-8">
-                     <h2>Don't take our word for it, check user reviews</h2>
+                     <h2 id="reviews-title"
+                         contenteditable="{{ auth()->check() && auth()->user()->role === 'admin' ? 'true' : 'false' }}"
+                         data-id="{{ $title->id }}">{{ $title->reviews }}</h2>
                  </div>
+
                  <div class="col-xl-4 col-lg-4 d-flex align-items-center justify-content-end">
                      <div class="lonyo-title-btn">
                          <a class="lonyo-default-btn t-btn" href="contact-us.html">Read Customer Stories</a>
@@ -45,3 +51,59 @@
          <img src="{{ asset('frontend/assets/images/v2/overlay.png') }}" alt="">
      </div>
  </div>
+
+
+ {{-- csrk token --}}
+ <meta name="csrf-token" content="{{ csrf_token() }}">
+
+ <script>
+     document.addEventListener("DOMContentLoaded", function() {
+         const titleElement = document.getElementById("reviews-title");
+
+
+         function saveChange(element) {
+             let reviewsId = element.dataset.id;
+             let field = element.id === "reviews-title" ? "reviews" : "";
+             let newValue = element.innerText.trim();
+
+             fetch(`/edit-reviews/${reviewsId}`, {
+                     method: "POST",
+                     headers: {
+                         "X-CSRF-TOKEN": document
+                             .querySelector('meta[name="csrf-token"]')
+                             .getAttribute("content"),
+                         "Content-Type": "application/json"
+                     },
+                     body: JSON.stringify({
+                         [field]: newValue
+                     })
+                 })
+                 .then(response => response.json())
+                 .then(data => {
+                     if (data.success) {
+                         console.log(field + " updated successfully");
+                     }
+                 })
+                 .catch(error => console.error("Error:", error));
+         }
+
+         titleElement.addEventListener("blur", () => saveChange(titleElement));
+
+         // Auto save on enter key
+         function isEditable(el) {
+             return el === titleElement;
+         }
+
+         document.addEventListener("keydown", function(e) {
+             if (e.key === "Enter" && isEditable(e.target)) {
+                 e.preventDefault();
+                 saveChange(e.target);
+                 e.target.blur();
+             }
+         });
+
+
+
+
+     });
+ </script>

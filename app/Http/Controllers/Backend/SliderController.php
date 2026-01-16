@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Slider;
+use App\Models\Title;
 use Illuminate\Http\Request;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
@@ -61,6 +62,37 @@ class SliderController extends Controller
         }
 
         $slider->save();
+        return response()->json(['success' => true]);
+    }
+    public function EditFeatures(Request $request, $id)
+    {
+        $title = Title::findOrFail($id);
+        if ($request->has("features")) {
+            $title->features = $request->features;
+        }
+
+        $title->save();
+        return response()->json(['success' => true]);
+    }
+
+    public function EditReviews(Request $request, $id)
+    {
+        $title = Title::findOrFail($id);
+        if ($request->has("reviews")) {
+            $title->reviews = $request->reviews;
+        }
+
+        $title->save();
+        return response()->json(['success' => true]);
+    }
+    public function EditAnswers(Request $request, $id)
+    {
+        $title = Title::findOrFail($id);
+        if ($request->has("answers")) {
+            $title->answers = $request->answers;
+        }
+
+        $title->save();
         return response()->json(['success' => true]);
     }
 }

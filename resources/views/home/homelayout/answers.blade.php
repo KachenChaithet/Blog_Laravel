@@ -1,8 +1,15 @@
     <div class="lonyo-section-padding4">
         <div class="container">
+
+            @php
+                $title = App\Models\Title::find(1);
+            @endphp
             <div class="lonyo-section-title center">
-                <h2>Find answers to all questions below</h2>
+                <h2 id="answers-title"
+                    contenteditable="{{ auth()->check() && auth()->user()->role === 'admin' ? 'true' : 'false' }}"
+                    data-id="{{ $title->id }}">{{ $title->answers }}</h2>
             </div>
+
             <div class="lonyo-faq-shape"></div>
             <div class="lonyo-faq-wrap1">
                 <div class="lonyo-faq-item item2 open" data-aos="fade-up" data-aos-duration="500">
@@ -86,3 +93,59 @@
             </div>
         </div>
     </div>
+
+
+    {{-- csrk token --}}
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const titleElement = document.getElementById("answers-title");
+
+
+            function saveChange(element) {
+                let answersId = element.dataset.id;
+                let field = element.id === "answers-title" ? "answers" : "";
+                let newValue = element.innerText.trim();
+
+                fetch(`/edit-answers/${answersId}`, {
+                        method: "POST",
+                        headers: {
+                            "X-CSRF-TOKEN": document
+                                .querySelector('meta[name="csrf-token"]')
+                                .getAttribute("content"),
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            [field]: newValue
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            console.log(field + " updated successfully");
+                        }
+                    })
+                    .catch(error => console.error("Error:", error));
+            }
+
+            titleElement.addEventListener("blur", () => saveChange(titleElement));
+
+            // Auto save on enter key
+            function isEditable(el) {
+                return el === titleElement;
+            }
+
+            document.addEventListener("keydown", function(e) {
+                if (e.key === "Enter" && isEditable(e.target)) {
+                    e.preventDefault();
+                    saveChange(e.target);
+                    e.target.blur();
+                }
+            });
+
+
+
+
+        });
+    </script>

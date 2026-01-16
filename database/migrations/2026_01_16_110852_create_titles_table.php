@@ -12,10 +12,9 @@ return new class extends Migration {
     {
         Schema::create('titles', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable();
-            $table->text('description')->nullable();
-            $table->string('image')->nullable();
-            $table->string('link')->nullable();
+            $table->string('features')->nullable();
+            $table->string('reviews')->nullable();
+            $table->string('answers')->nullable();
             $table->timestamps();
         });
     }
