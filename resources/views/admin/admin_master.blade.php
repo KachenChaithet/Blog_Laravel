@@ -63,6 +63,7 @@
             @yield('addreview')<!-- content -->
             @yield('editreview')<!-- content -->
             @yield('getslider')<!-- content -->
+            @yield('allfeature')<!-- content -->
 
             <!-- Footer Start -->
             @include('admin.body.footer')

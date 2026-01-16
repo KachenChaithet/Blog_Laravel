@@ -61,13 +61,16 @@
                  <li>
                      <a href="#sidebarError" data-bs-toggle="collapse">
                          <i data-feather="alert-octagon"></i>
-                         <span> Slider Setup </span>
+                         <span> Features Setup </span>
                          <span class="menu-arrow"></span>
                      </a>
                      <div class="collapse" id="sidebarError">
                          <ul class="nav-second-level">
                              <li>
-                                 <a href="{{ route('get.slider') }}" class="tp-link">Get Slider</a>
+                                 <a href="{{ route('all.feature') }}" class="tp-link">All Features</a>
+                             </li>
+                             <li>
+                                 <a href="{{ route('get.slider') }}" class="tp-link">Add Features</a>
                              </li>
 
 
