@@ -67,6 +67,7 @@
             @yield('addfeature')<!-- content -->
             @yield('editfeature')<!-- content -->
             @yield('getclarifi')<!-- content -->
+            @yield('getusability')<!-- content -->
 
             <!-- Footer Start -->
             @include('admin.body.footer')

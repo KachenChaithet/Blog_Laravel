@@ -13,8 +13,10 @@ return new class extends Migration {
         Schema::create('usabilities', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->string('image')->nullable();
+            $table->string('youtube')->nullable();
+            $table->string('link')->nullable();
             $table->timestamps();
         });
     }

@@ -7,4 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class usability extends Model
 {
     //
+    protected $guarded = [];
+
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Clarifi;
 use App\Models\Feature;
+use App\Models\usability;
 use Illuminate\Http\Request;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
@@ -114,5 +115,42 @@ class HomeController extends Controller
         );
 
         return redirect()->route('get.clarifis')->with($notification);
+    }
+    public function GetUsability()
+    {
+        $usability = usability::findOrFail(1);
+
+        return view('admin.backend.usability.get_usability', compact('usability'));
+    }
+    public function UpdateUsability(Request $request)
+    {
+        $usability = usability::findOrFail(1);
+        $imageName = $usability->image;
+
+        if ($request->hasFile('image')) {
+            if ($usability->image && file_exists(public_path('uploads/usability/' . $usability->image))) {
+                unlink(public_path('uploads/usability/' . $usability->image));
+            }
+            $image = $request->file('image');
+            $manager = new ImageManager(new Driver());
+            $imageName = hexdec(uniqid()) . '.' . $image->extension();
+            $img = $manager->read($image);
+            $img->resize(560, 400)->save(public_path('uploads/usability/' . $imageName));
+        }
+
+        $usability->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'link' => $request->link,
+            'image' => $imageName,
+            'youtube' => $request->youtube,
+
+        ]);
+        $notification = array(
+            'message' => 'Clarifis Update Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('get.usability')->with($notification);
     }
 }

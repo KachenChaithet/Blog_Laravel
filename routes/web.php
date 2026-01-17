@@ -52,7 +52,11 @@ Route::controller(HomeController::class)->middleware('auth')->group(function () 
 Route::controller(HomeController::class)->middleware('auth')->group(function () {
     Route::get('/get/clarifis', 'GetClarifis')->name('get.clarifis');
     Route::put('/update/clarifis', 'UpdateClarifis')->name('update.clarifis');
+});
 
+Route::controller(HomeController::class)->middleware('auth')->group(function () {
+    Route::get('/get/usability', 'GetUsability')->name('get.usability');
+    Route::put('/update/usability', 'UpdateUsability')->name('update.usability');
 });
 
 Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');

@@ -88,57 +88,24 @@
                              <li>
                                  <a href="{{ route('get.clarifis') }}" class="tp-link">Get Clarifis</a>
                              </li>
-                             <li>
-                                 <a href="{{ route('add.feature') }}" class="tp-link">Add Features</a>
-                             </li>
+                           
 
 
 
                          </ul>
                      </div>
-                 </li>
-
-
-
-
-                 <li class="menu-title mt-2">General</li>
-
-                 <li>
-                     <a href="#sidebarBaseui" data-bs-toggle="collapse">
-                         <i data-feather="package"></i>
-                         <span> Components </span>
-                         <span class="menu-arrow"></span>
-                     </a>
-                     <div class="collapse" id="sidebarBaseui">
-                         <ul class="nav-second-level">
-                             <li>
-                                 <a href="ui-accordions.html" class="tp-link">Accordions</a>
-                             </li>
-                             <li>
-                                 <a href="ui-alerts.html" class="tp-link">Alerts</a>
-                             </li>
-
-                         </ul>
-                     </div>
-                 </li>
-
-                 <li>
-                     <a href="widgets.html" class="tp-link">
-                         <i data-feather="aperture"></i>
-                         <span> Widgets </span>
-                     </a>
                  </li>
 
                  <li>
                      <a href="#sidebarAdvancedUI" data-bs-toggle="collapse">
                          <i data-feather="cpu"></i>
-                         <span> Extended UI </span>
+                         <span> Usability Setup </span>
                          <span class="menu-arrow"></span>
                      </a>
                      <div class="collapse" id="sidebarAdvancedUI">
                          <ul class="nav-second-level">
                              <li>
-                                 <a href="extended-carousel.html" class="tp-link">Carousel</a>
+                                 <a href="{{ route('get.usability') }}" class="tp-link">Get Usability</a>
                              </li>
                              <li>
                                  <a href="extended-notifications.html" class="tp-link">Notifications</a>
