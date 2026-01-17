@@ -43,6 +43,11 @@ Route::controller(SliderController::class)->middleware('auth')->group(function (
 });
 Route::controller(HomeController::class)->middleware('auth')->group(function () {
     Route::get('/all/feature', 'AllFeature')->name('all.feature');
+    Route::get('/add/feature', 'AddFeature')->name('add.feature');
+    Route::post('/store/feature', 'StoreFeature')->name('store.feature');
+    Route::get('/edit/feature/{id}', 'EditFeature')->name('edit.feature');
+    Route::put('/update/feature/{id}', 'UpdateFeature')->name('update.feature');
+    Route::delete('/delete/feature/{id}', 'DeleteFeature')->name('delete.feature');
 
 
 });

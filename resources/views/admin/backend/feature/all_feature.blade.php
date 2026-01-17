@@ -38,10 +38,10 @@
                                             <td>{{ $feature->description }}</td>
                                             <td>{{ $feature->icon }}</td>
                                             <td>
-                                                <a href="{{ route('edit.review', $feature->id) }}"
+                                                <a href="{{ route('edit.feature', $feature->id) }}"
                                                     class="btn btn-success btn-sm">Edit</a>
 
-                                                <form action="{{ route('delete.review', $feature->id) }}" method="POST"
+                                                <form action="{{ route('delete.feature', $feature->id) }}" method="POST"
                                                     class="delete-form" style="display:inline;">
                                                     @csrf
                                                     @method('DELETE')
