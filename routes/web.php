@@ -48,7 +48,10 @@ Route::controller(HomeController::class)->middleware('auth')->group(function () 
     Route::get('/edit/feature/{id}', 'EditFeature')->name('edit.feature');
     Route::put('/update/feature/{id}', 'UpdateFeature')->name('update.feature');
     Route::delete('/delete/feature/{id}', 'DeleteFeature')->name('delete.feature');
-
+});
+Route::controller(HomeController::class)->middleware('auth')->group(function () {
+    Route::get('/get/clarifis', 'GetClarifis')->name('get.clarifis');
+    Route::put('/update/clarifis', 'UpdateClarifis')->name('update.clarifis');
 
 });
 

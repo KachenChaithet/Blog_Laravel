@@ -42,17 +42,16 @@
                  <li>
                      <a href="#sidebarAuth" data-bs-toggle="collapse">
                          <i data-feather="users"></i>
-                         <span> Review Setup </span>
+                         <span> Slider Setup </span>
                          <span class="menu-arrow"></span>
                      </a>
                      <div class="collapse" id="sidebarAuth">
                          <ul class="nav-second-level">
+
                              <li>
-                                 <a href="{{ route('all.review') }}" class="tp-link">All Review</a>
+                                 <a href="{{ route('get.slider') }}" class="tp-link">Setup Slider</a>
                              </li>
-                             <li>
-                                 <a href="{{ route('add.review') }}" class="tp-link">Add Review</a>
-                             </li>
+
 
                          </ul>
                      </div>
@@ -73,9 +72,26 @@
                                  <a href="{{ route('add.feature') }}" class="tp-link">Add Features</a>
                              </li>
 
+
+
+                         </ul>
+                     </div>
+                 </li>
+                 <li>
+                     <a href="#sidebarBaseui" data-bs-toggle="collapse">
+                         <i data-feather="alert-octagon"></i>
+                         <span> Clarifis Setup </span>
+                         <span class="menu-arrow"></span>
+                     </a>
+                     <div class="collapse" id="sidebarBaseui">
+                         <ul class="nav-second-level">
                              <li>
-                                 <a href="{{ route('get.slider') }}" class="tp-link">Edit slider</a>
+                                 <a href="{{ route('get.clarifis') }}" class="tp-link">Get Clarifis</a>
                              </li>
+                             <li>
+                                 <a href="{{ route('add.feature') }}" class="tp-link">Add Features</a>
+                             </li>
+
 
 
                          </ul>
