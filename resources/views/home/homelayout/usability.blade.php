@@ -103,14 +103,16 @@
             }
 
             // Auto save losing focus
-            document.querySelectorAll(
-                '[id^="editable-title"], [id^="editable-description"]'
-            ).forEach(el => {
-                el.addEventListener("blur", function() {
-                    saveChange(el);
-                });
-            });
+            document.addEventListener("focusout", function(e) {
+                const el = e.target;
 
+                if (
+                    el.id?.startsWith("editable-title") ||
+                    el.id?.startsWith("editable-description")
+                ) {
+                    saveChange(el);
+                }
+            });
 
             // Auto save on enter key
             document.addEventListener("keydown", function(e) {
