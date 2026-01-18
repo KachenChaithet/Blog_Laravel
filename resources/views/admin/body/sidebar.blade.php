@@ -88,7 +88,7 @@
                              <li>
                                  <a href="{{ route('get.clarifis') }}" class="tp-link">Get Clarifis</a>
                              </li>
-                           
+
 
 
 
@@ -107,18 +107,35 @@
                              <li>
                                  <a href="{{ route('get.usability') }}" class="tp-link">Get Usability</a>
                              </li>
+
+
+                         </ul>
+                     </div>
+                 </li>
+                 <li>
+                     <a href="#sidebarConnect" data-bs-toggle="collapse" aria-expanded="false">
+                         <i data-feather=""></i>
+                         <span> Connect Setup </span>
+                         <span class="menu-arrow"></span>
+                     </a>
+
+                     <div class="collapse" id="sidebarConnect">
+                         <ul class="nav-second-level">
                              <li>
-                                 <a href="extended-notifications.html" class="tp-link">Notifications</a>
-                             </li>
-                             <li>
-                                 <a href="extended-offcanvas.html" class="tp-link">Offcanvas</a>
-                             </li>
-                             <li>
-                                 <a href="extended-range-slider.html" class="tp-link">Range Slider</a>
+                                 <a href="{{ route('all.Connect') }}" class="tp-link">
+                                     All Connects
+                                 </a>
+                                 <a href="{{ route('add.Connect') }}" class="tp-link">
+                                     Add Connects
+                                 </a>
                              </li>
                          </ul>
                      </div>
                  </li>
+
+
+
+
 
                  <li>
                      <a href="#sidebarIcons" data-bs-toggle="collapse">

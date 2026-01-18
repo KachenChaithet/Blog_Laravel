@@ -58,6 +58,14 @@ Route::controller(HomeController::class)->middleware('auth')->group(function () 
     Route::get('/get/usability', 'GetUsability')->name('get.usability');
     Route::put('/update/usability', 'UpdateUsability')->name('update.usability');
 });
+Route::controller(HomeController::class)->middleware('auth')->group(function () {
+    Route::get('/all/connect', 'AllConnect')->name('all.Connect');
+    Route::get('/add/connect', 'AddConnect')->name('add.Connect');
+    Route::post('/store/connect', 'StoreConnect')->name('store.connect');
+    Route::get('/edit/connect/{id}', 'EditConnect')->name('edit.connect');
+    Route::put('/update/connect/{id}', 'UpdateConnect')->name('update.connect');
+    Route::delete('/delete/connect/{id}', 'DeleteConnect')->name('delete.connect');
+});
 
 Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
 Route::post('/admin/login', [AdminController::class, 'AdminLogIn'])->name('admin.login');

@@ -1,5 +1,5 @@
 @extends('admin.admin_master')
-@section('allfeature')
+@section('allconnect')
     <div class="content">
 
         <!-- Start Content-->
@@ -15,7 +15,7 @@
                     <div class="card">
 
                         <div class="card-header">
-                            <h5 class="card-title mb-0">All Feature</h5>
+                            <h5 class="card-title mb-0">All Connect</h5>
                         </div><!-- end card header -->
 
                         <div class="card-body">
@@ -25,23 +25,21 @@
                                         <th>Sl</th>
                                         <th>title</th>
                                         <th>description</th>
-                                        <th>icon</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
-                                    @foreach ($features as $key => $feature)
+                                    @foreach ($connects as $key => $connect)
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
-                                            <td>{{ $feature->title }}</td>
-                                            <td>{{ Str::limit($feature->description, 50, '...') }}</td>
-                                            <td>{{ $feature->icon }}</td>
+                                            <td>{{ $connect->title }}</td>
+                                            <td>{{ Str::limit($connect->description, 50, '...') }}</td>
                                             <td>
-                                                <a href="{{ route('edit.feature', $feature->id) }}"
+                                                <a href="{{ route('edit.connect', $connect->id) }}"
                                                     class="btn btn-success btn-sm">Edit</a>
 
-                                                <form action="{{ route('delete.feature', $feature->id) }}" method="POST"
+                                                <form action="{{ route('delete.connect', $connect->id) }}" method="POST"
                                                     class="delete-form" style="display:inline;">
                                                     @csrf
                                                     @method('DELETE')

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Clarifi;
+use App\Models\Connect;
 use App\Models\Feature;
 use App\Models\usability;
 use Illuminate\Http\Request;
@@ -152,5 +153,67 @@ class HomeController extends Controller
         );
 
         return redirect()->route('get.usability')->with($notification);
+    }
+
+
+    public function AllConnect()
+    {
+        $connects = Connect::latest()->get();
+
+        return view('admin.backend.connect.all_connect', compact('connects'));
+    }
+
+    public function AddConnect()
+    {
+        return view('admin.backend.connect.add_connect');
+    }
+
+    public function StoreConnect(Request $request)
+    {
+        Connect::create([
+            'title' => $request->title,
+            'description' => $request->description
+        ]);
+
+        $notification = array(
+            'message' => 'Connect Created Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('all.Connect')->with($notification);
+    }
+
+    public function DeleteConnect($id)
+    {
+        $connect = Connect::findOrFail($id);
+        $connect->delete();
+
+        $notification = [
+            'message' => 'Delete Connect Successfully',
+            'alert-type' => 'success'
+        ];
+
+        return redirect()->route('all.Connect')->with($notification);
+    }
+
+    public function EditConnect($id)
+    {
+        $connect = Connect::findOrFail($id);
+        return view('admin.backend.connect.edit_connect', compact('connect'));
+    }
+
+    public function UpdateConnect(Request $request, $id)
+    {
+        $connect = connect::findOrFail($id);
+        $connect->update([
+            'title' => $request->title,
+            'description' => $request->description,
+        ]);
+
+        $notification = [
+            'message' => 'Update Connect Successfully',
+            'alert-type' => 'success'
+        ];
+
+        return redirect()->route('all.Connect')->with($notification);
     }
 }

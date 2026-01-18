@@ -68,6 +68,9 @@
             @yield('editfeature')<!-- content -->
             @yield('getclarifi')<!-- content -->
             @yield('getusability')<!-- content -->
+            @yield('allconnect')<!-- content -->
+            @yield('addconnect')<!-- content -->
+            @yield('editconnect')<!-- content -->
 
             <!-- Footer Start -->
             @include('admin.body.footer')
