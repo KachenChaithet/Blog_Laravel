@@ -65,6 +65,7 @@ Route::controller(HomeController::class)->middleware('auth')->group(function () 
     Route::get('/edit/connect/{id}', 'EditConnect')->name('edit.connect');
     Route::put('/update/connect/{id}', 'UpdateConnect')->name('update.connect');
     Route::delete('/delete/connect/{id}', 'DeleteConnect')->name('delete.connect');
+    Route::post('/update-connect/{id}', 'UpdateConnectFrontend');
 });
 
 Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');

@@ -45,10 +45,14 @@
                                     alt="">
                             </div>
                             <div class="lonyo-process-title">
-                                <h4>{{ $connect->title }}</h4>
+                                <h4 id="editable-title"
+                                    contenteditable="{{ auth()->check() && auth()->user()->role === 'admin' ? 'true' : 'false' }}"
+                                    data-id="{{ $connect->id }}">{{ $connect->title }}</h4>
                             </div>
                             <div class="lonyo-process-data">
-                                <p>{{ $connect->description }}</p>
+                                <p id="editable-description"
+                                    contenteditable="{{ auth()->check() && auth()->user()->role === 'admin' ? 'true' : 'false' }}"
+                                    data-id="{{ $connect->id }}">{{ $connect->description }}</p>
                             </div>
                         </div>
                     </div>
@@ -63,3 +67,62 @@
         <img src="{{ asset('frontend/assets/images/shape/shape3.svg') }}" alt="">
     </div>
     <!-- end video -->
+
+
+    {{-- csrk token --}}
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+
+            function saveChange(element) {
+                let connectId = element.dataset.id;
+                let field = element.id.startsWith("editable-title") ? "title" : "description";
+                console.log('this is', field);
+                let newValue = element.innerText.trim();
+
+                fetch(`/update-connect/${connectId}`, {
+                        method: "POST",
+                        headers: {
+                            "X-CSRF-TOKEN": document
+                                .querySelector('meta[name="csrf-token"]')
+                                .getAttribute("content"),
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            [field]: newValue
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            console.log(field + " updated successfully");
+                        }
+                    })
+                    .catch(error => console.error("Error:", error));
+            }
+
+            // Auto save losing focus
+            document.querySelectorAll(
+                '[id^="editable-title"], [id^="editable-description"]'
+            ).forEach(el => {
+                el.addEventListener("blur", function() {
+                    saveChange(el);
+                });
+            });
+
+
+            // Auto save on enter key
+            document.addEventListener("keydown", function(e) {
+                if (e.key === "Enter") {
+                    e.preventDefault();
+                    saveChange(e.target);
+                    e.target.blur();
+                }
+            });
+
+
+
+
+        });
+    </script>

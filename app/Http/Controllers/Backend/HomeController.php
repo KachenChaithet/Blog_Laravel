@@ -216,4 +216,13 @@ class HomeController extends Controller
 
         return redirect()->route('all.Connect')->with($notification);
     }
+
+    public function UpdateConnectFrontend(Request $request, $id)
+    {
+        $connect = Connect::findOrFail($id);
+        $connect->update($request->only(['title', 'description']));
+        return response()->json(['success' => true, 'message' => 'Update successfully']);
+
+    }
 }
+
