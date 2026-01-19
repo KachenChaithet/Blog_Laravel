@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\App;
 use App\Models\Clarifi;
 use App\Models\Connect;
 use App\Models\Faq;
@@ -11,6 +12,8 @@ use App\Models\usability;
 use Illuminate\Http\Request;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
+use Storage;
+use Str;
 
 class HomeController extends Controller
 {
@@ -287,6 +290,38 @@ class HomeController extends Controller
         ];
 
         return redirect()->route('all.faqs')->with($notification);
+    }
+
+    public function UpdateAppsFrontend(Request $request, $id)
+    {
+        $apps = App::findOrFail($id);
+        $apps->update($request->only(['title', 'description']));
+        return response()->json(['success' => true, 'message' => 'Update successfully']);
+    }
+
+    public function UpdateAppsImageFrontend(Request $request, $id)
+    {
+        $request->validate([
+            'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+        ]);
+        $apps = App::findOrFail($id);
+        if ($apps->image && file_exists(public_path($apps->image))) {
+            unlink(public_path($apps->image));
+        }
+        $image = $request->file('image');
+        $filename = Str::uuid() . '.' . $image->extension();
+        $manager = new ImageManager(new Driver());
+        $img = $manager->read($image);
+        $img->resize(306, 481)->save(public_path('uploads/apps/' . $filename));
+        $path = 'uploads/apps/' . $filename;
+
+        $apps->image = $path;
+        $apps->save();
+
+        return response()->json([
+            'success' => true,
+            'image_url' => asset($path),
+        ]);
     }
 
 }

@@ -76,6 +76,13 @@ Route::controller(HomeController::class)->middleware('auth')->group(function () 
     Route::delete('/delete/faqs/{id}', 'DeleteFaqs')->name('delete.faqs');
 
 });
+Route::controller(HomeController::class)->middleware('auth')->group(function () {
+    Route::post('/update-apps/{id}', 'UpdateAppsFrontend');
+    Route::post('/update-app-image/{id}', 'UpdateAppsImageFrontend');
+
+
+
+});
 
 Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
 Route::post('/admin/login', [AdminController::class, 'AdminLogIn'])->name('admin.login');

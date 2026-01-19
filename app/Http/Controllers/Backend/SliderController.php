@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\App;
 use App\Models\Slider;
 use App\Models\Title;
 use Illuminate\Http\Request;
@@ -95,4 +96,7 @@ class SliderController extends Controller
         $title->save();
         return response()->json(['success' => true]);
     }
+   
+
+
 }
