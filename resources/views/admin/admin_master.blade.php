@@ -71,6 +71,8 @@
             @yield('allconnect')<!-- content -->
             @yield('addconnect')<!-- content -->
             @yield('editconnect')<!-- content -->
+            @yield('allfaqs')<!-- content -->
+            @yield('addfaqs')<!-- content -->
 
             <!-- Footer Start -->
             @include('admin.body.footer')

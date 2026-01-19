@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Clarifi;
 use App\Models\Connect;
+use App\Models\Faq;
 use App\Models\Feature;
 use App\Models\usability;
 use Illuminate\Http\Request;
@@ -224,5 +225,69 @@ class HomeController extends Controller
         return response()->json(['success' => true, 'message' => 'Update successfully']);
 
     }
+
+    public function GetFaqs()
+    {
+        $faqs = Faq::latest()->get();
+        return view('admin.backend.faqs.all_faqs', compact('faqs'));
+    }
+
+    public function AddFaqs()
+    {
+        return view('admin.backend.faqs.add_faqs');
+
+    }
+
+    public function StoreFaqs(Request $request)
+    {
+        Faq::create([
+            'title' => $request->title,
+            'description' => $request->description,
+        ]);
+
+        $notification = [
+            'message' => 'Faqs Inserted Successfully',
+            'alert-type' => 'success'
+        ];
+
+        return redirect()->route('all.faqs')->with($notification);
+    }
+
+    public function EditFaqs($id)
+    {
+
+        $faq = Faq::findOrFail($id);
+        return view('admin.backend.faqs.edit_faqs', compact('faq'));
+    }
+
+    public function DeleteFaqs($id)
+    {
+        $faqs = Faq::findOrFail($id);
+        $faqs->delete();
+
+        $notification = [
+            'message' => 'Delete faqs Successfully',
+            'alert-type' => 'success'
+        ];
+
+        return redirect()->route('all.faqs')->with($notification);
+    }
+
+    public function UpdateFaqs(Request $request, $id)
+    {
+        $faqs = Faq::findOrFail($id);
+        $faqs->update([
+            'title' => $request->title,
+            'description' => $request->description,
+        ]);
+
+        $notification = [
+            'message' => 'Update faqs Successfully',
+            'alert-type' => 'success'
+        ];
+
+        return redirect()->route('all.faqs')->with($notification);
+    }
+
 }
 

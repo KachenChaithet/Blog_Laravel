@@ -67,6 +67,15 @@ Route::controller(HomeController::class)->middleware('auth')->group(function () 
     Route::delete('/delete/connect/{id}', 'DeleteConnect')->name('delete.connect');
     Route::post('/update-connect/{id}', 'UpdateConnectFrontend');
 });
+Route::controller(HomeController::class)->middleware('auth')->group(function () {
+    Route::get('/get/faqs', 'GetFaqs')->name('all.faqs');
+    Route::get('/add/faqs', 'AddFaqs')->name('add.faqs');
+    Route::post('/store/faqs', 'StoreFaqs')->name('store.faqs');
+    Route::get('/edit/faqs/{id}', 'EditFaqs')->name('edit.faqs');
+    Route::put('/update/faqs/{id}', 'UpdateFaqs')->name('update.faqs');
+    Route::delete('/delete/faqs/{id}', 'DeleteFaqs')->name('delete.faqs');
+
+});
 
 Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
 Route::post('/admin/login', [AdminController::class, 'AdminLogIn'])->name('admin.login');

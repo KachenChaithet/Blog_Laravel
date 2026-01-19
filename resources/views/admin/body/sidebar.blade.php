@@ -132,6 +132,27 @@
                          </ul>
                      </div>
                  </li>
+                 
+                 <li>
+                     <a href="#sidebarFaq" data-bs-toggle="collapse" aria-expanded="false">
+                         <i data-feather=""></i>
+                         <span> Faqs Setup </span>
+                         <span class="menu-arrow"></span>
+                     </a>
+
+                     <div class="collapse" id="sidebarFaq">
+                         <ul class="nav-second-level">
+                             <li>
+                                 <a href="{{ route('all.faqs') }}" class="tp-link">
+                                     All Faqs
+                                 </a>
+                                 <a href="{{ route('add.faqs') }}" class="tp-link">
+                                     Add Faqs
+                                 </a>
+                             </li>
+                         </ul>
+                     </div>
+                 </li>
 
 
 
