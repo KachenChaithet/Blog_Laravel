@@ -73,6 +73,9 @@
             @yield('editconnect')<!-- content -->
             @yield('allfaqs')<!-- content -->
             @yield('addfaqs')<!-- content -->
+            @yield('allteam')<!-- content -->
+            @yield('addteam')<!-- content -->
+            @yield('editteam')<!-- content -->
 
             <!-- Footer Start -->
             @include('admin.body.footer')

@@ -84,6 +84,7 @@
     {{-- maincontent --}}
 
     @yield('home')
+    @yield('outteam')
 
     {{-- endmaincontent --}}
 

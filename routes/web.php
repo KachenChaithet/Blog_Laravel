@@ -4,6 +4,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\HomeController;
 use App\Http\Controllers\Backend\ReviewController;
 use App\Http\Controllers\Backend\SliderController;
+use App\Http\Controllers\backend\TeamController;
+use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -59,8 +61,8 @@ Route::controller(HomeController::class)->middleware('auth')->group(function () 
     Route::put('/update/usability', 'UpdateUsability')->name('update.usability');
 });
 Route::controller(HomeController::class)->middleware('auth')->group(function () {
-    Route::get('/all/connect', 'AllConnect')->name('all.Connect');
-    Route::get('/add/connect', 'AddConnect')->name('add.Connect');
+    Route::get('/all/connect', 'AllConnect')->name('all.connect');
+    Route::get('/add/connect', 'AddConnect')->name('add.connect');
     Route::post('/store/connect', 'StoreConnect')->name('store.connect');
     Route::get('/edit/connect/{id}', 'EditConnect')->name('edit.connect');
     Route::put('/update/connect/{id}', 'UpdateConnect')->name('update.connect');
@@ -79,11 +81,23 @@ Route::controller(HomeController::class)->middleware('auth')->group(function () 
 Route::controller(HomeController::class)->middleware('auth')->group(function () {
     Route::post('/update-apps/{id}', 'UpdateAppsFrontend');
     Route::post('/update-app-image/{id}', 'UpdateAppsImageFrontend');
-
-
-
+});
+Route::controller(TeamController::class)->middleware('auth')->group(function () {
+    Route::get('/all/team', 'AllTeam')->name('all.team');
+    Route::get('/add/team', 'AddTeam')->name('add.team');
+    Route::post('/store/team', 'StoreTeam')->name('store.team');
+    Route::get('/edit/team/{id}', 'EditTeam')->name('edit.team');
+    Route::put('/update/team/{id}', 'UpdateTeam')->name('update.team');
+    Route::delete('/delete/team/{id}', 'DeleteTeam')->name('delete.team');
 });
 
+// outteam
+Route::controller(FrontendController::class)->group(function () {
+    Route::get('/team', 'OutTeam')->name('out.team');
+});
+
+
+// -----------------
 Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
 Route::post('/admin/login', [AdminController::class, 'AdminLogIn'])->name('admin.login');
 Route::get('/verify', [AdminController::class, 'ShowVerification'])->name('custom.verification.form');

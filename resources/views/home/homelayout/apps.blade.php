@@ -81,15 +81,20 @@
 
         document.querySelectorAll('[id^="app-title"], [id^="app-description"]').forEach(el => {
             el.addEventListener("blur", () => {
+
                 saveChange(el)
             })
         })
 
         document.addEventListener("keydown", function(e) {
-            if (e.key === "Enter") {
+            if (e.key !== "Enter") return
+            const el = e.target
+            if (
+                el.id === "app-title" ||
+                el.id === "app-description"
+            ) {
                 e.preventDefault();
-                saveChange(e.target);
-                e.target.blur();
+                el.blur(); // blur จะไป trigger saveChange อยู่แล้ว
             }
         });
 

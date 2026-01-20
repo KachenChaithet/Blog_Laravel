@@ -122,17 +122,17 @@
                      <div class="collapse" id="sidebarConnect">
                          <ul class="nav-second-level">
                              <li>
-                                 <a href="{{ route('all.Connect') }}" class="tp-link">
+                                 <a href="{{ route('all.connect') }}" class="tp-link">
                                      All Connects
                                  </a>
-                                 <a href="{{ route('add.Connect') }}" class="tp-link">
+                                 <a href="{{ route('add.connect') }}" class="tp-link">
                                      Add Connects
                                  </a>
                              </li>
                          </ul>
                      </div>
                  </li>
-                 
+
                  <li>
                      <a href="#sidebarFaq" data-bs-toggle="collapse" aria-expanded="false">
                          <i data-feather=""></i>
@@ -159,18 +159,18 @@
 
 
                  <li>
-                     <a href="#sidebarIcons" data-bs-toggle="collapse">
+                     <a href="#sidebarTeam" data-bs-toggle="collapse">
                          <i data-feather="award"></i>
-                         <span> Icons </span>
+                         <span> Team Setup </span>
                          <span class="menu-arrow"></span>
                      </a>
-                     <div class="collapse" id="sidebarIcons">
+                     <div class="collapse" id="sidebarTeam">
                          <ul class="nav-second-level">
                              <li>
-                                 <a href="icons-feather.html" class="tp-link">Feather Icons</a>
+                                 <a href="{{ route('all.team') }}" class="tp-link">All Team</a>
                              </li>
                              <li>
-                                 <a href="icons-mdi.html" class="tp-link">Material Design Icons</a>
+                                 <a href="{{ route('add.team') }}" class="tp-link">Add Team</a>
                              </li>
                          </ul>
                      </div>

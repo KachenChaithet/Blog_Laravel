@@ -45,14 +45,19 @@
                                     alt="">
                             </div>
                             <div class="lonyo-process-title">
-                                <h4 id="editable-title"
-                                    contenteditable="{{ auth()->check() && auth()->user()->role === 'admin' ? 'true' : 'false' }}"
-                                    data-id="{{ $connect->id }}">{{ $connect->title }}</h4>
+                                <h4 class="editable" data-field="title" data-id="{{ $connect->id }}"
+                                    contenteditable="{{ auth()->check() && auth()->user()->role === 'admin' ? 'true' : 'false' }}">
+                                    {{ $connect->title }}
+                                </h4>
+
+
                             </div>
                             <div class="lonyo-process-data">
-                                <p id="editable-description"
-                                    contenteditable="{{ auth()->check() && auth()->user()->role === 'admin' ? 'true' : 'false' }}"
-                                    data-id="{{ $connect->id }}">{{ $connect->description }}</p>
+
+                                <p class="editable" data-field="description" data-id="{{ $connect->id }}"
+                                    contenteditable="{{ auth()->check() && auth()->user()->role === 'admin' ? 'true' : 'false' }}">
+                                    {{ $connect->description }}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -75,25 +80,23 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
 
-            function saveChange(element) {
-                let connectId = element.dataset.id;
-                let field = element.id.startsWith("editable-title") ? "title" : "description";
-                console.log('this is', field);
-                let newValue = element.innerText.trim();
 
-                fetch(`/update-connect/${connectId}`, {
+            function saveChange(el) {
+                const id = el.dataset.id;
+                const field = el.dataset.field;
+                const value = el.innerText.trim();
+
+                fetch(`/update-connect/${id}`, {
                         method: "POST",
                         headers: {
-                            "X-CSRF-TOKEN": document
-                                .querySelector('meta[name="csrf-token"]')
-                                .getAttribute("content"),
-                            "Content-Type": "application/json"
+                            "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content,
+                            "Content-Type": "application/json",
+                            "Accept": "application/json"
                         },
                         body: JSON.stringify({
-                            [field]: newValue
+                            [field]: value
                         })
-                    })
-                    .then(response => response.json())
+                    }).then(response => response.json())
                     .then(data => {
                         if (data.success) {
                             console.log(field + " updated successfully");
@@ -102,28 +105,22 @@
                     .catch(error => console.error("Error:", error));
             }
 
-            // Auto save losing focus
-            document.addEventListener("focusout", function(e) {
-                const el = e.target;
 
-                if (
-                    el.id?.startsWith("editable-title") ||
-                    el.id?.startsWith("editable-description")
-                ) {
-                    saveChange(el);
-                }
-            });
-
-            // Auto save on enter key
-            document.addEventListener("keydown", function(e) {
-                if (e.key === "Enter") {
-                    e.preventDefault();
+            // save เมื่อ blur
+            document.addEventListener("focusout", e => {
+                if (e.target.classList.contains("editable")) {
                     saveChange(e.target);
-                    e.target.blur();
                 }
             });
 
+            // Enter แค่ทำให้ blur
+            document.addEventListener("keydown", e => {
+                if (e.key !== "Enter") return;
+                if (!e.target.classList.contains("editable")) return;
 
+                e.preventDefault();
+                e.target.blur();
+            });
 
 
         });
