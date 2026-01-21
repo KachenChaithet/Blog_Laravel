@@ -21,8 +21,8 @@
                                  <a href="#">About Us</a>
                                  <ul class="sub-menu">
                                      <li>
-                                         <a href="index.html">
-                                             Company Profile
+                                         <a href="{{ route('about.us') }}">
+                                             About Us
                                          </a>
                                      </li>
                                      <li>

@@ -175,6 +175,21 @@
                          </ul>
                      </div>
                  </li>
+                 <li>
+                     <a href="#sidebarAbout" data-bs-toggle="collapse">
+                         <i data-feather="award"></i>
+                         <span> About Setup </span>
+                         <span class="menu-arrow"></span>
+                     </a>
+                     <div class="collapse" id="sidebarAbout">
+                         <ul class="nav-second-level">
+                             <li>
+                                 <a href="{{ route('get.aboutus') }}" class="tp-link">About Page</a>
+                             </li>
+                         
+                         </ul>
+                     </div>
+                 </li>
 
 
 

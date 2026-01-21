@@ -34,6 +34,11 @@
     <link href="{{ asset('backend/assets/libs/datatables.net-select-bs5/css/select.bootstrap5.min.css') }}"
         rel="stylesheet" type="text/css" />
 
+    <!-- Quill css -->
+    <link href="{{ asset('backend/assets/libs/quill/quill.core.js') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('backend/assets/libs/quill/quill.snow.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('backend/assets/libs/quill/quill.bubble.css') }}" rel="stylesheet" type="text/css" />
+
 </head>
 
 <!-- body start -->
@@ -76,6 +81,7 @@
             @yield('allteam')<!-- content -->
             @yield('addteam')<!-- content -->
             @yield('editteam')<!-- content -->
+            @yield('getabout')<!-- content -->
 
             <!-- Footer Start -->
             @include('admin.body.footer')
@@ -149,8 +155,15 @@
     {{-- Confirm Delete --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="{{ asset('backend/assets/js/code.js') }}"></script>
-    
+
     <script src="{{ asset('backend/assets/js/validate.min.js') }}"></script>
+
+    <!-- Quill Editor Js -->
+    <script src="{{ asset('backend/assets/libs/quill/quill.core.js') }}"></script>
+    <script src="{{ asset('backend/assets/libs/quill/quill.min.js') }}"></script>
+
+    <!-- Quill Demo Js -->
+    <script src="{{ asset('backend/assets/js/pages/quilljs.init.js') }}"></script>
 </body>
 
 </html>

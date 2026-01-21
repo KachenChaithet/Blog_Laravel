@@ -90,14 +90,19 @@ Route::controller(TeamController::class)->middleware('auth')->group(function () 
     Route::put('/update/team/{id}', 'UpdateTeam')->name('update.team');
     Route::delete('/delete/team/{id}', 'DeleteTeam')->name('delete.team');
 });
-
-// outteam
+// about
 Route::controller(FrontendController::class)->group(function () {
     Route::get('/team', 'OutTeam')->name('out.team');
+});
+// outteam
+Route::controller(FrontendController::class)->group(function () {
+    Route::get('/get/aboutus', 'GetAboutUs')->name('get.aboutus');
+    Route::put('/update/about', 'UpdateAbout')->name('update.about');
 });
 
 
 // -----------------
+Route::get('/about', [FrontendController::class, 'AboutUs'])->name('about.us');
 Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
 Route::post('/admin/login', [AdminController::class, 'AdminLogIn'])->name('admin.login');
 Route::get('/verify', [AdminController::class, 'ShowVerification'])->name('custom.verification.form');
