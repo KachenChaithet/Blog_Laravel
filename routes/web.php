@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\backend\BlogController;
 use App\Http\Controllers\Backend\HomeController;
 use App\Http\Controllers\Backend\ReviewController;
 use App\Http\Controllers\Backend\SliderController;
@@ -98,6 +99,13 @@ Route::controller(FrontendController::class)->group(function () {
 Route::controller(FrontendController::class)->group(function () {
     Route::get('/get/aboutus', 'GetAboutUs')->name('get.aboutus');
     Route::put('/update/about', 'UpdateAbout')->name('update.about');
+});
+// blog
+Route::controller(BlogController::class)->group(function () {
+    Route::get('/blog/category', 'BlogCategory')->name('all.blog.category');
+    Route::post('/store/blog/category', 'StoreBlogCategory')->name('store.blog.category');
+
+
 });
 
 

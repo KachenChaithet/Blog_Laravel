@@ -82,6 +82,7 @@
             @yield('addteam')<!-- content -->
             @yield('editteam')<!-- content -->
             @yield('getabout')<!-- content -->
+            @yield('blogcategory')<!-- content -->
 
             <!-- Footer Start -->
             @include('admin.body.footer')

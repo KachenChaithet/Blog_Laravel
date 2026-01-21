@@ -186,7 +186,22 @@
                              <li>
                                  <a href="{{ route('get.aboutus') }}" class="tp-link">About Page</a>
                              </li>
-                         
+
+                         </ul>
+                     </div>
+                 </li>
+                 <li>
+                     <a href="#Blogcat" data-bs-toggle="collapse">
+                         <i data-feather="award"></i>
+                         <span> Blog Category Setup </span>
+                         <span class="menu-arrow"></span>
+                     </a>
+                     <div class="collapse" id="Blogcat">
+                         <ul class="nav-second-level">
+                             <li>
+                                 <a href="{{ route('all.blog.category') }}" class="tp-link">Blog Category</a>
+                             </li>
+
                          </ul>
                      </div>
                  </li>
