@@ -4,7 +4,7 @@
         <div class="container">
 
             <div class="breadcrumb-content">
-                <h1 class="breadcrumb-title pb-0">Blog</h1>
+                <h1 class="breadcrumb-title pb-0">{{ $categoryname->category_name }}</h1>
                 <div class="breadcrumb-menu-wrapper">
                     <div class="breadcrumb-menu-wrap">
                         <div class="breadcrumb-menu">
@@ -27,7 +27,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-                    @foreach ($posts as $post)
+                    @foreach ($blog as $post)
                         <div class="lonyo-blog-wrap" data-aos="fade-up" data-aos-duration="500">
                             <div class="lonyo-blog-thumb">
                                 <img src="{{ asset('uploads/post/' . $post->image) }}" alt="">
@@ -99,7 +99,7 @@
                         <div class="lonyo-blog-widgets">
                             <h4>Recent Posts</h4>
                             @foreach ($recentpost as $recent)
-                                <a class="lonyo-blog-recent-post-item" href="{{ url('blog/details', $recent->post_slug) }}">
+                                <a class="lonyo-blog-recent-post-item"  href="{{ url('blog/details', $recent->post_slug) }}">
                                     <div class="lonyo-blog-recent-post-thumb">
                                         <img src="{{ asset('uploads/post/' . $recent->image) }}" alt=""
                                             style="width: 150px; height: 120px;">

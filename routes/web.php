@@ -124,6 +124,7 @@ Route::controller(BlogController::class)->group(function () {
 // -----------------
 Route::get('/blog', [FrontendController::class, 'BlogPage'])->name('blog.page');
 Route::get('/blog/details/{slug}', [FrontendController::class, 'BlogDetails']);
+Route::get('/blog/category/{id}', [FrontendController::class, 'BlogCategory']);
 
 
 Route::get('/about', [FrontendController::class, 'AboutUs'])->name('about.us');
