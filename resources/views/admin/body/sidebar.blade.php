@@ -205,6 +205,22 @@
                          </ul>
                      </div>
                  </li>
+                 <li>
+                     <a href="#BlogPost" data-bs-toggle="collapse">
+                         <i data-feather="award"></i>
+                         <span> Blog Post Setup </span>
+                         <span class="menu-arrow"></span>
+                     </a>
+                     <div class="collapse" id="BlogPost">
+                         <ul class="nav-second-level">
+                             <li>
+                                 <a href="{{ route('all.blog.post') }}" class="tp-link">All Blog Post</a>
+                                 <a href="{{ route('add.blog.post') }}" class="tp-link">Add Blog Post</a>
+                             </li>
+
+                         </ul>
+                     </div>
+                 </li>
 
 
 

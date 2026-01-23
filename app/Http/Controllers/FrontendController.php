@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\About;
+use App\Models\BlogCategory;
+use App\Models\BlogPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Intervention\Image\Drivers\Gd\Driver;
@@ -55,5 +57,21 @@ class FrontendController extends Controller
         );
 
         return redirect()->route('get.aboutus')->with($notification);
+    }
+
+    public function BlogPage()
+    {
+        $categories = BlogCategory::latest()->withCount('countPost')->get();
+        $posts = BlogPost::latest()->limit(5)->get();
+        $recentpost = BlogPost::latest()->limit(3)->get();
+        return view('home.blog.list_blog', compact('categories', 'posts', 'recentpost'));
+    }
+
+    public function BlogDetails($slug)
+    {
+        $blog = BlogPost::where('post_slug', $slug)->first();
+        $categories = BlogCategory::latest()->withCount('countPost')->get();
+        $recentpost = BlogPost::latest()->limit(3)->get();
+        return view('home.blog.blog_details', compact('blog', 'categories', 'recentpost'));
     }
 }

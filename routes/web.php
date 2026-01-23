@@ -100,16 +100,32 @@ Route::controller(FrontendController::class)->group(function () {
     Route::get('/get/aboutus', 'GetAboutUs')->name('get.aboutus');
     Route::put('/update/about', 'UpdateAbout')->name('update.about');
 });
-// blog
+// blog category
 Route::controller(BlogController::class)->group(function () {
     Route::get('/blog/category', 'BlogCategory')->name('all.blog.category');
     Route::post('/store/blog/category', 'StoreBlogCategory')->name('store.blog.category');
+    Route::get('/edit/blog/category/{id}', 'EditBlogCategory');
+    Route::post('/update/blog/category', 'UpdateBlogCategory')->name('update.blog.category');
+    Route::delete('/delete/blog/{id}', 'DeleteBlogCategory')->name('delete.blog.category');
 
+});
+// blog post
+Route::controller(BlogController::class)->group(function () {
+    Route::get('/all/blog/post', 'AllBlogPost')->name('all.blog.post');
+    Route::get('/add/blog/post', 'AddBlogPost')->name('add.blog.post');
+    Route::post('/store/blog/post', 'StoreBlogPost')->name('store.blog.post');
+    Route::get('/edit/blog/post/{id}', 'EditBlogPost')->name('edit.blog.post');
+    Route::put('/update/blog/post/{id}', 'UpdateBlogPost')->name('update.blog.post');
+    Route::delete('/delete/blog/post/{id}', 'DeleteBlogPost')->name('delete.blog.post');
 
 });
 
 
 // -----------------
+Route::get('/blog', [FrontendController::class, 'BlogPage'])->name('blog.page');
+Route::get('/blog/details/{slug}', [FrontendController::class, 'BlogDetails']);
+
+
 Route::get('/about', [FrontendController::class, 'AboutUs'])->name('about.us');
 Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
 Route::post('/admin/login', [AdminController::class, 'AdminLogIn'])->name('admin.login');

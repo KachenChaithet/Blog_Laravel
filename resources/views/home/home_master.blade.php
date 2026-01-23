@@ -86,6 +86,8 @@
     @yield('home')
     @yield('outteam')
     @yield('about')
+    @yield('blog')
+    @yield('blogdetail')
 
     {{-- endmaincontent --}}
 

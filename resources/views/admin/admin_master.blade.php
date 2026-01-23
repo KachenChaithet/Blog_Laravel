@@ -83,6 +83,9 @@
             @yield('editteam')<!-- content -->
             @yield('getabout')<!-- content -->
             @yield('blogcategory')<!-- content -->
+            @yield('allpost')<!-- content -->
+            @yield('addpost')<!-- content -->
+            @yield('editpost')<!-- content -->
 
             <!-- Footer Start -->
             @include('admin.body.footer')
